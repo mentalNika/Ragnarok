@@ -539,30 +539,34 @@
 	}
 
 	&-info {
-		column-gap: 5%;
+		margin-top: 100px;
+		column-gap: 10%;
 		transition: column-gap 0.5s;
 
 		&.reverse {
 			flex-direction: row-reverse;
+			column-gap: 10%;
 
-			&.explore {
+			.explore {
 				&-img {
-					justify-content: start;
+					// width: 50%;
+					justify-content: center;
 				}
 
 				&-description {
-					text-align: right;
+					max-width: max-content;
+					text-align: left;
 				}
 
 				&-button {
-					margin-left: auto;
+					margin-right: auto;
 				}
 			}
 		}	
 	}
 
 	&-img {
-		width: 50%;
+		// width: 50%;
 		text-align: center;
 		display: flex;
 		justify-content: end;
@@ -574,6 +578,23 @@
 			@include bg;
 			position: relative; 
 
+			&::before {
+				position: absolute;
+				display: block;
+				content: "";
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 61px;
+				height: 140px;
+				background-color: $orange;
+				opacity: 0.8;
+				background-position: center;
+				background-repeat: no-repeat;
+				filter: blur(75px);
+				z-index: 3;
+			}
+
 			img {
 				max-width: unset;
 				position: absolute;
@@ -581,6 +602,33 @@
 				left: 0;
 			}
 		}
+	}
+
+	&-description {
+		max-width: max-content;
+		width: 50%; 
+
+		ul {
+			flex-direction: column;
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 36px;
+			display: none; 
+
+			&.active {
+				display: flex;
+			}
+		}
+	}
+
+	&-button {
+		
+		@include button($orange);
+		@include hoverOrange;
+		padding: 8px 19px;
+		margin-top: 20px;
+		font-size: 13px;
+		font-weight: 500;
 	}
 }
 
